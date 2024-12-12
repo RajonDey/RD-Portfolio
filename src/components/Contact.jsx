@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -6,7 +6,39 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+const ContactItem = memo(({ title, content, href }) => (
+  <div className="flex flex-col">
+    <span className="text-white font-medium mb-4">{title}</span>
+    {href ? (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-secondary text-[16px] font-medium"
+      >
+        {content}
+      </a>
+    ) : (
+      <p className="text-secondary text-[16px] font-medium">{content}</p>
+    )}
+  </div>
+));
+
 const Contact = () => {
+  const contactItems = [
+    {
+      title: "Email",
+      content: "rajondeyofficial@gmail.com",
+      href: "mailto:rajondeyofficial@gmail.com",
+    },
+    {
+      title: "WhatsApp",
+      content: "Chat on WhatsApp",
+      href: "https://wa.me/8801737997143",
+    },
+    { title: "Location", content: "Sylhet, Bangladesh" },
+  ];
+
   return (
     <div
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
@@ -21,34 +53,9 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Contact.</h3>
 
         <div className="mt-12 flex flex-col gap-8">
-          <div className="flex flex-col">
-            <span className="text-white font-medium mb-4">Email</span>
-            <a
-              href="mailto:rajondeyofficial@gmail.com"
-              className="text-secondary text-[16px] font-medium"
-            >
-              rajondeyofficial@gmail.com
-            </a>
-          </div>
-
-          <div className="flex flex-col">
-            <span className="text-white font-medium mb-4">WhatsApp</span>
-            <a
-              href="https://wa.me/8801737997143"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-secondary text-[16px] font-medium"
-            >
-              Chat on WhatsApp
-            </a>
-          </div>
-
-          <div className="flex flex-col">
-            <span className="text-white font-medium mb-4">Location</span>
-            <p className="text-secondary text-[16px] font-medium">
-              Sylhet, Bangladesh
-            </p>
-          </div>
+          {contactItems.map((item, index) => (
+            <ContactItem key={index} {...item} />
+          ))}
         </div>
       </motion.div>
 
@@ -62,4 +69,4 @@ const Contact = () => {
   );
 };
 
-export default SectionWrapper(Contact, "contact");
+export default memo(SectionWrapper(Contact, "contact"));

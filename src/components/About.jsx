@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
@@ -7,7 +7,7 @@ import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const ServiceCard = ({ index, title, icon, link }) => (
+const ServiceCard = memo(({ index, title, icon, link }) => (
   <Tilt className="xs:w-[250px] w-full">
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
@@ -29,8 +29,9 @@ const ServiceCard = ({ index, title, icon, link }) => (
         >
           <img
             src={icon}
-            alt="web-development"
+            alt={`${title} icon`}
             className="w-16 h-16 object-contain"
+            loading="lazy"
           />
 
           <h3 className="text-black text-[20px] font-bold text-center">
@@ -40,7 +41,7 @@ const ServiceCard = ({ index, title, icon, link }) => (
       </a>
     </motion.div>
   </Tilt>
-);
+));
 
 const About = () => {
   return (
@@ -50,7 +51,7 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>At a Glance.</h2>
       </motion.div>
 
-      <motion.p
+      <motion.div
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-5xl leading-[30px]"
       >
@@ -70,7 +71,7 @@ const About = () => {
           functional but also engaging and easy to navigate.
         </p>
         <p>Let's collaborate to bring your vision to life!</p>
-      </motion.p>
+      </motion.div>
 
       <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (
@@ -81,4 +82,4 @@ const About = () => {
   );
 };
 
-export default SectionWrapper(About, "about");
+export default memo(SectionWrapper(About, "about"));

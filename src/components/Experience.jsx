@@ -1,9 +1,17 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import React, { memo, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
+
+const LazyVerticalTimeline = lazy(() =>
+  import("react-vertical-timeline-component").then((module) => ({
+    default: module.VerticalTimeline,
+  }))
+);
+
+const LazyVerticalTimelineElement = lazy(() =>
+  import("react-vertical-timeline-component").then((module) => ({
+    default: module.VerticalTimelineElement,
+  }))
+);
 
 import "react-vertical-timeline-component/style.min.css";
 
@@ -12,9 +20,9 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
-const ExperienceCard = ({ experience }) => {
+const ExperienceCard = memo(({ experience }) => {
   return (
-    <VerticalTimelineElement
+    <LazyVerticalTimelineElement
       contentStyle={{
         background: "#ECEFF0",
         color: "#000000",
@@ -28,6 +36,7 @@ const ExperienceCard = ({ experience }) => {
             src={experience.icon}
             alt={experience.company_name}
             className="w-[60%] h-[60%] object-contain"
+            loading="lazy"
           />
         </div>
       }
@@ -52,9 +61,9 @@ const ExperienceCard = ({ experience }) => {
           </li>
         ))}
       </ul>
-    </VerticalTimelineElement>
+    </LazyVerticalTimelineElement>
   );
-};
+});
 
 const Experience = () => {
   return (
@@ -69,17 +78,19 @@ const Experience = () => {
       </motion.div>
 
       <div className="mt-20 flex flex-col">
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
+        <Suspense fallback={<div>Loading timeline...</div>}>
+          <LazyVerticalTimeline>
+            {experiences.map((experience, index) => (
+              <ExperienceCard
+                key={`experience-${index}`}
+                experience={experience}
+              />
+            ))}
+          </LazyVerticalTimeline>
+        </Suspense>
       </div>
     </>
   );
 };
 
-export default SectionWrapper(Experience, "work");
+export default memo(SectionWrapper(Experience, "work"));
