@@ -1,11 +1,12 @@
 import logo from "./logo.png";
+import menu from "./menu.svg";
+import close from "./close.svg";
+
 import cms from "./cms-dev.png";
 import email from "./email-dev.png";
 import react from "./react-dev.png";
 import uiux from "./ui-ux-dev.png";
 import github from "./github.png";
-import menu from "./menu.svg";
-import close from "./close.svg";
 
 import css from "./tech/css.png";
 import bootstrap from "./tech/bootstrap.svg";
@@ -30,13 +31,13 @@ import LifeCommits from "./projects/LifeCommits.png";
 
 export {
   logo,
+  menu,
+  close,
   cms,
   email,
   react,
   uiux,
   github,
-  menu,
-  close,
   css,
   bootstrap,
   figma,

@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { motion } from "framer-motion";
 
-import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
@@ -47,10 +46,12 @@ const Contact = () => {
         variants={slideIn("left", "tween", 0.2, 1)}
         className="flex-[0.75] bg-[#218193] p-8 rounded-2xl"
       >
-        <p className={`${styles.sectionSubText} text-white`}>
+        <p className="sm:text-[18px] text-[14px] uppercase tracking-wider text-white">
           If you have any projects in mind!
         </p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <h3 className="text-black font-black md:text-[40px] sm:text-[40px] xs:text-[30px] text-[30px]">
+          Contact.
+        </h3>
 
         <div className="mt-12 flex flex-col gap-8">
           {contactItems.map((item, index) => (

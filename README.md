@@ -6,3 +6,5 @@
 ## Myself
 Rajon, a software developer with experience in TypeScript, JavaScript, React, NextJs, Node.js, and Three.js. Also passionate about creating websites using Headless CMS, WordPress, Wix, Squarespace, and Shopify. 
 
+use npm run build - to make dist folder and hosting this website static
+

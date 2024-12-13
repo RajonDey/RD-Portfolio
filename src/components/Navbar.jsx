@@ -30,7 +30,9 @@ const Navbar = () => {
       className={`${
         styles.paddingX
       } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+        scrolled
+          ? "bg-gray-400 bg-opacity-70 backdrop-blur-sm shadow-md"
+          : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -45,7 +47,6 @@ const Navbar = () => {
           <img src={logo} alt="logo" className="w-12 h-auto object-contain" />
           <p className="text-black text-[18px] font-bold cursor-pointer flex ">
             Code By Rajon &nbsp;
-            {/* <span className="sm:block hidden"> Code By Rajon </span> */}
           </p>
         </Link>
 
@@ -58,7 +59,13 @@ const Navbar = () => {
               } hover:text-black text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              {nav.external ? (
+                <a href={nav.url} target="_blank" rel="noopener noreferrer">
+                  {nav.title}
+                </a>
+              ) : (
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              )}
             </li>
           ))}
         </ul>
@@ -81,14 +88,33 @@ const Navbar = () => {
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-black" : "text-secondary"
+                    active === nav.title ? "text-black" : "text-white"
                   }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
+                  {nav.external ? (
+                    <a
+                      href={nav.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setToggle(!toggle);
+                        setActive(nav.title);
+                      }}
+                    >
+                      {nav.title}
+                    </a>
+                  ) : (
+                    <a
+                      href={`#${nav.id}`}
+                      onClick={() => {
+                        setToggle(!toggle);
+                        setActive(nav.title);
+                      }}
+                    >
+                      {nav.title}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

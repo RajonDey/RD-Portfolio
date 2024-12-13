@@ -36,6 +36,12 @@ export const navLinks = [
     id: "contact",
     title: "Contact",
   },
+  {
+    id: "main-site",
+    title: "My Web",
+    url: "https://www.rajondey.com/",
+    external: true,
+  },
 ];
 
 const services = [

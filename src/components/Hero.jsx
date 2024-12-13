@@ -83,10 +83,10 @@ const Hero = () => {
         className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-col items-start gap-5`}
       >
         <div>
-          <h1 className={`${styles.heroHeadText} text-black section-title`}>
+          <h1 className="font-black text-black text-[30px] xs:text-[40px] sm:text-[40px] lg:text-[50px] lg:leading-[98px] mt-2">
             Hi, I'm <span className="text-[#218193]">Rajon</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-4 text-black-700`}>
+          <p className="text-black font-medium text-[16px] xs:text-[20px] sm:text-[24px] lg:text-[26px] lg:leading-[40px] mt-4">
             I turn ideas into digital excellence – by crafting pixel-perfect
             <br className="sm:block hidden" />
             websites, seamless user interfaces, and powerful web applications.

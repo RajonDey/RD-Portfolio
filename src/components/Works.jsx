@@ -67,8 +67,12 @@ const Works = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} `}>My work</p>
-        <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
+        <p className="sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider">
+          My work
+        </p>
+        <h2 className="text-black font-black md:text-[40px] sm:text-[40px] xs:text-[30px] text-[30px]">
+          Projects.
+        </h2>
       </motion.div>
 
       <div className="w-full flex">
